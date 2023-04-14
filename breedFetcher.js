@@ -4,7 +4,7 @@ const breedName = process.argv.slice(2)[0];
 
 request(`https://api.thecatapi.com/v1/breeds/search?q=${breedName}`, (error, response, body) => {
   if (error){
-    console.error(error);
+    console.error('An error occurred', error);
     return
   }
   // console.log('error:', error); 
