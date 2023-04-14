@@ -3,19 +3,19 @@ const request = require('request');
 const breedName = process.argv.slice(2)[0];
 
 request(`https://api.thecatapi.com/v1/breeds/search?q=${breedName}`, (error, response, body) => {
-  if (error){
+  if (error) {
     console.error('An error occurred', error);
-    return
+    return;
   }
-  // console.log('error:', error); 
-  console.log('statusCode:', response && response.statusCode); 
-  // console.log('body:', body); 
+  // console.log('error:', error);
+  console.log('statusCode:', response && response.statusCode);
+  // console.log('body:', body);
   // console.log(typeof body)
   const data = JSON.parse(body);
   // console.log(data);
   // // console.log(typeof data);
 
-  if (!breedName){
+  if (!breedName) {
     console.error("opps!! No search parameter provided.");
     // console.log("opps!! No search parameter provided.");
     process.exit();
@@ -24,7 +24,7 @@ request(`https://api.thecatapi.com/v1/breeds/search?q=${breedName}`, (error, res
   let result;
 
   for (let i = 0; i < data.length; i++) {
-    if (data[i].name === breedName ){
+    if (data[i].name === breedName) {
       // console.log("found");
       result = data[i];
     }
@@ -35,14 +35,14 @@ request(`https://api.thecatapi.com/v1/breeds/search?q=${breedName}`, (error, res
   // console.log(result);
 
   if (result) {
-    console.log(result.description)
+    console.log(result.description);
   }
 
   if (!result) {
     console.log(`Ooops!! it appears that ${breedName} does not exist in our database.!!!`);
   }
 
-  if (!breedName){
+  if (!breedName) {
     console.error("opps!! No search parameter provided.");
     // console.log("opps!! No search parameter provided.");
     process.exit();
